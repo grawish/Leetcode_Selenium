@@ -16,6 +16,13 @@ while "1" != input("press 1 when signed in: "):
 print("accessing Questions")
 driver.get("https://leetcode.com/problemset/all/?status=Solved")
 sleep(3)
+select = driver.find_element_by_tag_name("select")
+select.click()
+options = driver.find_elements_by_tag_name("option")
+for option in options:
+    print(option)
+    option.click()
+
 links = driver.find_elements_by_tag_name("a")
 f = open("problems", "r")
 problems = f.readline().split(",")
@@ -25,9 +32,5 @@ for link in links:
         problems.remove(slug)
 for i in problems:
     print(i)
-
-# for problem in problems:
-#     if problem not in done:
-#         print(" ->" + problem + "<- Not Done!")
 
 # driver.close()
