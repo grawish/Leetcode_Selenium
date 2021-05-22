@@ -1,36 +1,3 @@
-import os
-from time import sleep
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+import base64
 
-options = webdriver.ChromeOptions()
-options.add_argument("user-data-dir={}\driver_data".format(os.getcwd()))
-
-driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
-
-driver.get("https://leetcode.com/")
-
-while "1" != input("press 1 when signed in: "):
-    pass
-
-print("accessing Questions")
-driver.get("https://leetcode.com/problemset/all/?status=Solved")
-sleep(3)
-select = driver.find_element_by_tag_name("select")
-select.click()
-options = driver.find_elements_by_tag_name("option")
-for option in options:
-    option.click()
-
-links = driver.find_elements_by_tag_name("a")
-f = open("problems", "r")
-problems = f.readline().split(",")
-print()
-for link in links:
-    slug = link.get_attribute("data-slug")
-    if slug and slug in problems:
-        problems.remove(slug)
-for i in problems:
-    print("-> ",i," <-")
-
-driver.close()
+exec(base64.b64decode("aW1wb3J0IG9zCmltcG9ydCBiYXNlNjQKZnJvbSB0aW1lIGltcG9ydCBzbGVlcApmcm9tIHNlbGVuaXVtIGltcG9ydCB3ZWJkcml2ZXIKZnJvbSB3ZWJkcml2ZXJfbWFuYWdlci5jaHJvbWUgaW1wb3J0IENocm9tZURyaXZlck1hbmFnZXIKCm9wdGlvbnMgPSB3ZWJkcml2ZXIuQ2hyb21lT3B0aW9ucygpCm9wdGlvbnMuYWRkX2FyZ3VtZW50KCJ1c2VyLWRhdGEtZGlyPXt9XGRyaXZlcl9kYXRhIi5mb3JtYXQob3MuZ2V0Y3dkKCkpKQoKZHJpdmVyID0gd2ViZHJpdmVyLkNocm9tZShDaHJvbWVEcml2ZXJNYW5hZ2VyKCkuaW5zdGFsbCgpLCBjaHJvbWVfb3B0aW9ucz1vcHRpb25zKQoKZHJpdmVyLmdldCgiaHR0cHM6Ly9sZWV0Y29kZS5jb20vIikKCndoaWxlICIxIiAhPSBpbnB1dCgicHJlc3MgMSB3aGVuIHNpZ25lZCBpbjogIik6CiAgICBwYXNzCgpwcmludCgiYWNjZXNzaW5nIFF1ZXN0aW9ucyIpCmRyaXZlci5nZXQoImh0dHBzOi8vbGVldGNvZGUuY29tL3Byb2JsZW1zZXQvYWxsLz9zdGF0dXM9U29sdmVkIikKc2xlZXAoMykKc2VsZWN0ID0gZHJpdmVyLmZpbmRfZWxlbWVudF9ieV90YWdfbmFtZSgic2VsZWN0IikKc2VsZWN0LmNsaWNrKCkKb3B0aW9ucyA9IGRyaXZlci5maW5kX2VsZW1lbnRzX2J5X3RhZ19uYW1lKCJvcHRpb24iKQpmb3Igb3B0aW9uIGluIG9wdGlvbnM6CiAgICBvcHRpb24uY2xpY2soKQoKbGlua3MgPSBkcml2ZXIuZmluZF9lbGVtZW50c19ieV90YWdfbmFtZSgiYSIpCiMgZiA9IG9wZW4oInByb2JsZW1zLnR4dCIsICJyIikKIyBwcmludChmLnJlYWRsaW5lKCkpCnByb2JsZW1zID0gYmFzZTY0LmI2NGRlY29kZShvcGVuKCJwcm9ibGVtcy50eHQiLCAiciIpLnJlYWRsaW5lKCkuZW5jb2RlKCJhc2NpaSIpKS5kZWNvZGUoImFzY2lpIikuc3BsaXQoIiwiKQpmb3IgbGluayBpbiBsaW5rczoKICAgIHNsdWcgPSBsaW5rLmdldF9hdHRyaWJ1dGUoImRhdGEtc2x1ZyIpCiAgICBpZiBzbHVnIGFuZCBzbHVnIGluIHByb2JsZW1zOgogICAgICAgIHByb2JsZW1zLnJlbW92ZShzbHVnKQoKZm9yIGkgaW4gcHJvYmxlbXM6CiAgICBwcmludCgiLT4gIiwgaSwgIiA8LSIpCgpkcml2ZXIuY2xvc2UoKQo=".encode("ascii")).decode("ascii"))
