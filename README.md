@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Leetcode_Selenium
 =======
 #Leetcode Selenium
