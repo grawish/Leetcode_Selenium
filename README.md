@@ -1,6 +1,5 @@
 
 # Leetcode_Selenium
-***
 ## Description
 
 **This repository was made to check Devsnest Questions are done or not.**
