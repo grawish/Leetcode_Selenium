@@ -20,17 +20,17 @@ select = driver.find_element_by_tag_name("select")
 select.click()
 options = driver.find_elements_by_tag_name("option")
 for option in options:
-    print(option)
     option.click()
 
 links = driver.find_elements_by_tag_name("a")
 f = open("problems", "r")
 problems = f.readline().split(",")
+print()
 for link in links:
     slug = link.get_attribute("data-slug")
     if slug and slug in problems:
         problems.remove(slug)
 for i in problems:
-    print(i)
+    print("-> ",i," <-")
 
-# driver.close()
+driver.close()
